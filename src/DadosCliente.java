@@ -5,13 +5,13 @@ public class DadosCliente {
     public static void main(String[] args) {
 
         Scanner leitura = new Scanner(System.in);
-        int randomNumber = new Random().nextInt(4000);
+        int saldo = new Random().nextInt(4000);
         String tipoConta = "";
         int numeroConta = 0;
 
         System.out.println("--------------------------------------------------------");
         System.out.println("Digite o nome do cliente: ");
-        String nomeCliente = leitura.next();
+        String nomeCliente = leitura.nextLine();
         System.out.println("--------------------------------------------------------");
         System.out.println("ditite o tipo de conta do " + nomeCliente);
         System.out.println("Digite 1 para conta corrente!");
@@ -35,7 +35,7 @@ public class DadosCliente {
         System.out.println("Dados iniciais do cliente:");
         System.out.println("Nome: " + nomeCliente);
         System.out.println("Tipo de conta: " + tipoConta);
-        System.out.println("Saldo Inicial: R$ " + randomNumber);
+        System.out.println("Saldo Inicial: R$ " + saldo);
         System.out.println("*************************************************");
 
         System.out.println("Operações:");
@@ -51,22 +51,27 @@ public class DadosCliente {
 
             if(operacoes == 1){
                 System.out.println("--------------------------------------------------");
-                System.out.println("Seu saldo é: R$ " + randomNumber);
+                System.out.println("Seu saldo é: R$ " + saldo);
                 System.out.println("--------------------------------------------------");
             }else if(operacoes == 2){
                 System.out.println("--------------------------------------------------");
                 System.out.println("Digite o valor que você deseja depositar: ");
                 int novoSaldo = leitura.nextInt();
-                randomNumber += novoSaldo;
-                System.out.println("Seu novo saldo é de: R$ " + randomNumber);
+                saldo += novoSaldo;
+                System.out.println("Seu novo saldo é de: R$ " + saldo);
                 System.out.println("--------------------------------------------------");
 
             }else if (operacoes == 3) {
                 System.out.println("--------------------------------------------------");
                 System.out.println("Digite o valor que você deseja transferir: ");
                 int novoSaldo = leitura.nextInt();
-                randomNumber -= novoSaldo;
-                System.out.println("Seu novo saldo é de: R$ " + randomNumber);
+                if (novoSaldo > saldo) {
+                    System.out.println("Saldo insuficiente!");
+                } else {
+                    saldo -= novoSaldo;
+                    System.out.println("Seu novo saldo é de: R$ " + saldo);
+
+                }
                 System.out.println("--------------------------------------------------");
 
             }else if (operacoes != 4) {
@@ -83,6 +88,7 @@ public class DadosCliente {
             System.out.println("Digite a operação desejada:");
             operacoes = leitura.nextInt();
         }
+        System.out.println("Obrigado por usar nosso sistema! Volte sempre.");
 
     }
 }
